@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 08 jun 2023 om 12:56
+-- Gegenereerd op: 08 jun 2023 om 23:15
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -123,7 +123,8 @@ INSERT INTO `person` (`id`, `email`, `roles`, `password`, `hiring_date`, `salary
 (1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$qJ1ftp27ipgvDyT4RYwbpOooAW6ydwut6bkxkZ0jihoy1Odlnhnie', NULL, NULL, NULL, NULL, NULL, 'Klaas', 'test', 'Jeet', '15-08-2002'),
 (2, 'admin@rocmondriaan.nl', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$ZGm2KAauKtxNjkfrcROqqu2GcP05SMhmZzG2ocVZk3idisRoFa5Pi', '2021-06-03', '1600.00', 239870669, NULL, NULL, 'Tom', 'test', 'Holland', '23-09-1996'),
 (5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', '1800.00', 98768907, 'Klauslaan 10', 'Den Haag', 'Dhiradj', 'Test', 'Tangali', '30-12-2004'),
-(6, 'niels@mail.com', '[\"ROLE_KLANT\"]', '$2y$13$ik7j.NgxF.FtfuU3En2FfegSTNWyxJmvlq/44/DPhkXr.boJS/9f6', NULL, NULL, NULL, 'Mixostraat 5', 'Den Haag', 'Niels', 'test', 'Opperdam', '02-05-1995');
+(6, 'niels@mail.com', '[\"ROLE_KLANT\"]', '$2y$13$ik7j.NgxF.FtfuU3En2FfegSTNWyxJmvlq/44/DPhkXr.boJS/9f6', NULL, NULL, NULL, 'Mixostraat 5', 'Den Haag', 'Niels', 'test', 'Opperdam', '02-05-1995'),
+(9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', '1900.00', 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023');
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT voor een tabel `registration`
