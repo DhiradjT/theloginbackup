@@ -80,7 +80,7 @@
                 </ol>
             </nav>
             <h1 class="h2">Dashboard</h1>
-            <p>This Dashboard gives you a quick glance of everything!</p>
+            <p>This Dashboard gives you a quick glance of all of your activities</p>
             <div class="row my-4">
                 <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
                     <div class="card">
@@ -134,7 +134,7 @@
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">Time</th>
-                                        <th scope="col">Max people</th>
+                                        <th scope="col">Location</th>
                                         <th scope="col">Date</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -171,6 +171,13 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            {% for lesson in lessons %}
+{#                                {{ lesson.time }  }#}
+{#                                {{ lesson.date }}#}
+                                {{ lesson.location }}
+                            {% endfor %}
+
                             <a href="#" class="btn btn-block btn-light">View all</a>
                         </div>
                     </div>

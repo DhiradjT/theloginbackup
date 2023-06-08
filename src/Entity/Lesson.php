@@ -17,7 +17,7 @@ class Lesson
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
-    private ?training $training = null;
+    private ?Training $training = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     private ?person $instructor = null;
@@ -47,12 +47,12 @@ class Lesson
         return $this->id;
     }
 
-    public function getTraining(): ?training
+    public function getTraining(): ?Training
     {
         return $this->training;
     }
 
-    public function setTraining(?training $training): self
+    public function setTraining(?Training $training): self
     {
         $this->training = $training;
 
