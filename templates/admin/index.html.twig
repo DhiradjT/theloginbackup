@@ -8,9 +8,6 @@
 
 
 
-
-
-
 <nav class="navbar navbar-light bg-light p-3">
     <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
         <a class="navbar-brand" href="#">
@@ -140,43 +137,49 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">17371705</th>
-                                        <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                        <td>johndoe@gmail.com</td>
-                                        <td>Aug 31 2020</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% for lesson in lessons %}
+
+                                    <tr
+
+                                            {% if date(lesson.date|date("Y-m-d")) < date("now"|date ("Y-m-d")) %}
+                                                class="over"
+                                            {% endif %}
+                                            {% if date(lesson.date|date("d-m-Y")) > date("now"|date ("d-m-Y")) %}
+                                                class="next"
+                                            {% endif %}
+                                            {% if lesson.date|date("d-m-Y") == "now"|date ("d-m-Y") %}
+                                                class="now"
+                                            {% endif %}
+
+                                    >
                                         <th scope="row">17370540</th>
-                                        <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                        <td>jacob.monroe@company.com</td>
-                                        <td>Aug 28 2020</td>
+                                        <td>{{ lesson.time | date("H:i") }}</td>
+                                        <td>{{ lesson.location }}</td>
+                                        <td>{{ lesson.date | date("d/m/Y") }}</td>
                                         <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">17371705</th>
-                                        <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                        <td>johndoe@gmail.com</td>
-                                        <td>Aug 31 2020</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">17370540</th>
-                                        <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                        <td>jacob.monroe@company.com</td>
-                                        <td>Aug 28 2020</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
+
+
                                     </tbody>
+                                    {% endfor %}
                                 </table>
                             </div>
 
-                            {% for lesson in lessons %}
-{#                                {{ lesson.time }  }#}
-{#                                {{ lesson.date }}#}
-                                {{ lesson.location }}
-                            {% endfor %}
 
                             <a href="#" class="btn btn-block btn-light">View all</a>
                         </div>

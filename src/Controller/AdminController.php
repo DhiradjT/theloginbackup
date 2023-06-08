@@ -13,7 +13,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $lessons = $doctrine->getRepository(Lesson::class)->findAll();
+        $lessons = $doctrine->getRepository(Lesson::class)->findBy();
         return $this->render('admin/index.html.twig', [
             'lessons' => $lessons
         ]);
