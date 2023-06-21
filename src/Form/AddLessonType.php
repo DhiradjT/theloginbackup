@@ -16,19 +16,6 @@ class AddLessonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', DateTimeType::class, [
-                'label' => 'Date',
-                'attr' => [
-                    'placeholder' => 'Select the date',
-                ],
-            ])
-            ->add('time', DateTimeType::class, [
-                'label' => 'Time',
-                'attr' => [
-                    'placeholder' => 'Select the time',
-                ],
-            ])
-            // Add other fields here
             ->add('location', TextType::class, [
                 'label' => 'Location',
                 'attr' => [
@@ -38,7 +25,21 @@ class AddLessonType extends AbstractType
             ->add('max_persons', TextType::class, [
                 'label' => 'Max Persons',
                 'attr' => [
-                    'placeholder' => 'Enter the maximum number of persons',
+                    'placeholder' => 'Enter the maximum persons',
+                ],
+            ])
+            ->add('date', DateType::class, [
+                'label' => 'Date',
+                'widget' => 'single_text',
+                'attr' => [
+                    'placeholder' => 'Select the date',
+                ],
+            ])
+            ->add('time', TimeType::class, [
+                'label' => 'Time',
+                'widget' => 'single_text',
+                'attr' => [
+                    'placeholder' => 'Select the time',
                 ],
             ])
             ->add('title', TextType::class, [
@@ -46,28 +47,7 @@ class AddLessonType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Enter the title',
                 ],
-            ])
-            ->add('training', TextType::class, [
-                'label' => 'Training',
-                'attr' => [
-                    'placeholder' => 'Enter the training name',
-                ],
-            ])
 
-            ->add('instructor', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-                'multiple' => true,
-                'query_builder' => function (\Doctrine\ORM\EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->andWhere('u.roles LIKE :role')
-                        ->setParameter('role', '%ROLE_INSTRUCTOR%');
-                },
-                'label' => 'Instructor',
-                'attr' => [
-                    'placeholder' => 'Select the instructor(s)',
-                ],
-                'required' => false,
             ]);
     }
 

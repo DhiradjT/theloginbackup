@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(joinForm) }}
+    {{ form_widget(joinForm) }}
+    <button type="submit" class="btn btn-primary">Join</button>
+    {{ form_end(joinForm) }}
+{% endblock %}

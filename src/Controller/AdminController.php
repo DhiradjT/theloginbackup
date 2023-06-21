@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lesson;
+use App\Form\AddLessonType;
 use App\Form\ProfileType;
 use App\Form\LessonType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -102,7 +103,7 @@ class AdminController extends AbstractController
         $lesson = new Lesson();
 
         // Create the form and handle the form submission
-        $form = $this->createForm(LessonType::class, $lesson);
+        $form = $this->createForm(AddLessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -112,7 +113,7 @@ class AdminController extends AbstractController
             $entityManager->flush();
 
             // Redirect to a success page or perform any other desired action
-            return $this->redirectToRoute('success_page');
+            return $this->redirectToRoute('add_success_page');
         }
 
         return $this->render('admin/add.html.twig', [
@@ -120,5 +121,54 @@ class AdminController extends AbstractController
         ]);
 
     }
+
+    #[Route('/add_success', name: 'add_success_page')]
+    public function addSuccess()
+    {
+        return $this->render('admin/add_success_page.html.twig');
+    }
+
+
+    #[Route('/lesson/{id}/join', name: 'lesson_join')]
+    public function joinLesson(Request $request, Lesson $lesson): Response
+    {
+        // Create the form and handle the form submission
+        $form = $this->createForm(JoinLessonType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Get the currently logged-in user (assuming the instructor is authenticated)
+            $instructor = $this->getUser();
+
+            // Update the lesson entity with the instructor's ID
+            $lesson->addInstructor($instructor);
+
+            // Save the updated lesson to the database
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($lesson);
+            $entityManager->flush();
+
+            // Redirect to a success page or perform any other desired action
+            return $this->redirectToRoute('success_page');
+        }
+
+        return $this->render('join_page', [
+            'joinForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/join', name:'join_page')]
+    public function joinPage()
+    {
+        return $this->render('admin/join.html.twig');
+    }
+
+        // Handle the case where the user is not authenticated or does not have the instructor role
+        // You can redirect to an error page or show an error message
+
+        // ...
+
+
+
 
 }

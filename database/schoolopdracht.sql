@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 jun 2023 om 06:29
+-- Gegenereerd op: 21 jun 2023 om 11:37
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -102,7 +102,9 @@ CREATE TABLE `lesson` (
 --
 
 INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `location`, `max_persons`, `title`, `is_signed_up`) VALUES
-(3, 3, 5, '20:23:00', '2023-06-30', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0);
+(3, 3, 5, '20:23:00', '2023-06-30', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0),
+(4, NULL, NULL, '13:00:00', '2023-06-29', 'TrainingFactory Gym, 123 Main Street', 10, 'Bag Training', 0),
+(5, NULL, NULL, '18:30:00', '2023-07-04', 'TrainingFactory Gym, 123 Main Street', 25, 'MMA Fitness', 0);
 
 -- --------------------------------------------------------
 
@@ -263,7 +265,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT voor een tabel `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`

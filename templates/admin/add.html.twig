@@ -5,21 +5,13 @@
     <h1>Add lesson</h1>
 
     {{ form_start(form) }}
-
-    {{ form_row(form.date) }}
-    {{ form_row(form.time) }}
-        <button type="submit" class="btn btn-primary">Create</button>
-
+    {{ form_row(form.location) }}
+    {{ form_row(form.max_persons) }}
+        {{ form_row(form.date) }}
+        {{ form_row(form.time) }}
+    {{ form_row(form.title) }}
+    <button type="submit" class="btn btn-primary">Create</button>
     {{ form_end(form) }}
 
-{#    {{ form_start(form) }}#}
-{#    {{ form_row(form.time) }}#}
-{#    {{ form_row(form.date) }}#}
-{#    {{ form_row(form.location) }}#}
-{#    {{ form_row(form.max_persons) }}#}
-{#    {{ form_row(form.title) }}#}
-{#    {{ form_row(form.training) }}#}
-{#    {{ form_row(form.instructor) }}#}
-{#    <button type="submit" class="btn btn-primary">Create</button>#}
-{#    {{ form_end(form) }}#}
+
 {% endblock %}

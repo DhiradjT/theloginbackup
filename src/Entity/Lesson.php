@@ -41,7 +41,7 @@ class Lesson
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?bool $isSignedUp = null;
+    private ?bool $isSignedUp = false;
 
     public function __construct()
     {
