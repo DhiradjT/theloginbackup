@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 20 jun 2023 om 01:38
+-- Gegenereerd op: 21 jun 2023 om 06:29
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -74,7 +74,9 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230607095926', '2023-06-07 11:59:30', 22),
 ('DoctrineMigrations\\Version20230607100653', '2023-06-07 12:07:00', 113),
 ('DoctrineMigrations\\Version20230607101008', '2023-06-07 12:10:22', 109),
-('DoctrineMigrations\\Version20230619181239', '2023-06-19 20:12:50', 19);
+('DoctrineMigrations\\Version20230619181239', '2023-06-19 20:12:50', 19),
+('DoctrineMigrations\\Version20230620145920', '2023-06-20 16:59:29', 39),
+('DoctrineMigrations\\Version20230620232129', '2023-06-21 01:24:43', 16);
 
 -- --------------------------------------------------------
 
@@ -90,17 +92,17 @@ CREATE TABLE `lesson` (
   `time` time NOT NULL,
   `date` date NOT NULL,
   `location` varchar(255) NOT NULL,
-  `max_persons` int(11) NOT NULL
+  `max_persons` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `is_signed_up` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `lesson`
 --
 
-INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `location`, `max_persons`) VALUES
-(1, 1, 5, '18:00:00', '2023-06-19', 'TrainingFactory Gym, 123 Main Street', 20),
-(2, 2, 2, '17:30:00', '2023-06-21', 'TrainingFactory Gym, 123 Main Street', 15),
-(3, 3, 5, '19:00:00', '2023-06-27', 'TrainingFactory Gym, 123 Main Street', 12);
+INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `location`, `max_persons`, `title`, `is_signed_up`) VALUES
+(3, 3, 5, '20:23:00', '2023-06-30', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0);
 
 -- --------------------------------------------------------
 
@@ -149,9 +151,10 @@ CREATE TABLE `person` (
 INSERT INTO `person` (`id`, `email`, `roles`, `password`, `hiring_date`, `salary`, `social_sec_number`, `street`, `place`, `firstname`, `preprovision`, `lastname`, `dateofbirth`) VALUES
 (1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$qJ1ftp27ipgvDyT4RYwbpOooAW6ydwut6bkxkZ0jihoy1Odlnhnie', NULL, NULL, NULL, NULL, NULL, 'Klaas', 'test', 'Jeet', '15-08-2002'),
 (2, 'admin@rocmondriaan.nl', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$ZGm2KAauKtxNjkfrcROqqu2GcP05SMhmZzG2ocVZk3idisRoFa5Pi', '2021-06-03', 1600.00, 239870669, NULL, NULL, 'Tom', 'test', 'Holland', '23-09-1996'),
-(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', 1800.00, 98768907, 'Klauslaan 10', 'Den Haag', 'Dhiradj', 'Test', 'Tangali', '30-12-2004'),
+(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', 1800.00, 98768907, 'Kwarklaan 36', 'Amsterdam', 'Dhiradj', 'Rapstar', 'Tangali', '30-12-2004'),
 (6, 'niels@mail.com', '[\"ROLE_KLANT\"]', '$2y$13$ik7j.NgxF.FtfuU3En2FfegSTNWyxJmvlq/44/DPhkXr.boJS/9f6', NULL, NULL, NULL, 'Mixostraat 5', 'Den Haag', 'Niels', 'test', 'Opperdam', '02-05-1995'),
-(9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', 1900.00, 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023');
+(9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', 1900.00, 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023'),
+(11, 'kishan@gmail.com', '[\"ROLE_KLANT\"]', '$2y$13$yqHXizVijjIVJQYhjwV4u.0A24KRh4.5/1Cb/DzZu4qBTaF/ZzTYS', NULL, NULL, NULL, 'Gerardeek 5', 'Rotterdam', 'Kishan', 'Docent', 'Tangali', '05-02-2010');
 
 -- --------------------------------------------------------
 
@@ -272,7 +275,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT voor een tabel `registration`

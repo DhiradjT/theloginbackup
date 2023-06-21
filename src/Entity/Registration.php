@@ -20,7 +20,7 @@ class Registration
     private ?string $payment = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
-    private ?person $person = null;
+    private ?Person $person = null;
 
     public function getId(): ?int
     {
@@ -51,12 +51,12 @@ class Registration
         return $this;
     }
 
-    public function getPerson(): ?person
+    public function getPerson(): ?Person
     {
         return $this->person;
     }
 
-    public function setPerson(?person $person): self
+    public function setPerson(?Person $person): self
     {
         $this->person = $person;
 

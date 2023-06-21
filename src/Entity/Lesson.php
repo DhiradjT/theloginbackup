@@ -20,7 +20,7 @@ class Lesson
     private ?Training $training = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
-    private ?person $instructor = null;
+    private ?Person $instructor = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $time = null;
@@ -36,6 +36,12 @@ class Lesson
 
     #[ORM\OneToMany(mappedBy: 'lesson', targetEntity: Registration::class)]
     private Collection $registrations;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
+    #[ORM\Column]
+    private ?bool $isSignedUp = null;
 
     public function __construct()
     {
@@ -59,12 +65,12 @@ class Lesson
         return $this;
     }
 
-    public function getInstructor(): ?person
+    public function getInstructor(): ?Person
     {
         return $this->instructor;
     }
 
-    public function setInstructor(?person $instructor): self
+    public function setInstructor(?Person $instructor): self
     {
         $this->instructor = $instructor;
 
@@ -145,6 +151,30 @@ class Lesson
                 $registration->setLesson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function isIsSignedUp(): ?bool
+    {
+        return $this->isSignedUp;
+    }
+
+    public function setIsSignedUp(bool $isSignedUp): self
+    {
+        $this->isSignedUp = $isSignedUp;
 
         return $this;
     }

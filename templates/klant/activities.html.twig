@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        <h3>{{ lesson.title }}</h3>
+
+        <br>
+        <p>Date: {{ lesson.date|date('d-m-Y') }} </p>
+        <p>Time: {{ lesson.time|date('H:i') }} </p>
+        <p>Location: {{ lesson.location }}</p>
+        <p>Max Persons: {{ lesson.maxPersons }}</p>
+
+        {% if not lesson.isSignedUp %}
+                <a href="{{ path('signup', {'id': lesson.id}) }}">Sign Up</a>
+        {% else %}
+                <form action="{{ path('leave_activity', {'id': lesson.id}) }}" method="POST">
+                <p>You are already signed up for this lesson.</p>
+                <button type="submit">Leave Activity</button>
+        {% endif %}
+
+
+{% endblock %}
