@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 jun 2023 om 13:49
+-- Gegenereerd op: 21 jun 2023 om 15:24
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -105,7 +105,8 @@ INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `loc
 (3, 3, 5, '08:30:00', '2023-09-19', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0),
 (4, NULL, NULL, '13:00:00', '2023-06-29', 'TrainingFactory Gym, 123 Main Street', 10, 'Bag Training', 0),
 (5, NULL, NULL, '18:30:00', '2023-07-04', 'TrainingFactory Gym, 123 Main Street', 25, 'MMA Fitness', 0),
-(7, NULL, 5, '14:50:00', '2009-06-21', 'The Hague', 20, 'Boxing', 0);
+(7, NULL, 5, '14:50:00', '2009-06-21', 'The Hague', 20, 'Boxing', 0),
+(8, NULL, 5, '09:27:00', '2023-07-01', 'Amsterdam', 20, 'Boxing', 0);
 
 -- --------------------------------------------------------
 
@@ -152,9 +153,9 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`id`, `email`, `roles`, `password`, `hiring_date`, `salary`, `social_sec_number`, `street`, `place`, `firstname`, `preprovision`, `lastname`, `dateofbirth`) VALUES
-(1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$u8e2s.0FefEYDN8RuO2FkO1hlToTriIip.TJqsgTfCkC.z6pUzdIW', NULL, NULL, NULL, NULL, NULL, 'Klaas', 'test', 'Jeet', '15-08-2002'),
+(1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$u8e2s.0FefEYDN8RuO2FkO1hlToTriIip.TJqsgTfCkC.z6pUzdIW', NULL, NULL, NULL, 'hallostraat 4', 'Den Haag', 'Klaas', 'test', 'Jeet', '15-08-2002'),
 (2, 'admin@rocmondriaan.nl', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$ZGm2KAauKtxNjkfrcROqqu2GcP05SMhmZzG2ocVZk3idisRoFa5Pi', '2021-06-03', '1600.00', 239870669, NULL, NULL, 'Tom', 'test', 'Holland', '23-09-1996'),
-(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', '1800.00', 98768907, 'Kwarklaan 36', 'Amsterdam', 'Dhiradj', 'Rapstar', 'Tangali', '30-12-2004'),
+(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', '1800.00', 98768907, 'Roc mondriaan', 'Den Haag', 'Dhiradj', 'Rapstar', 'Tangali', '30-12-2004'),
 (6, 'niels@mail.com', '[\"ROLE_KLANT\"]', '$2y$13$ik7j.NgxF.FtfuU3En2FfegSTNWyxJmvlq/44/DPhkXr.boJS/9f6', NULL, NULL, NULL, 'Mixostraat 5', 'Den Haag', 'Niels', 'test', 'Opperdam', '02-05-1995'),
 (9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', '1900.00', 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023'),
 (11, 'kishan@gmail.com', '[\"ROLE_KLANT\"]', '$2y$13$yqHXizVijjIVJQYhjwV4u.0A24KRh4.5/1Cb/DzZu4qBTaF/ZzTYS', NULL, NULL, NULL, 'Gerardeek 5', 'Rotterdam', 'Kishan', 'Docent', 'Tangali', '05-02-2010');
@@ -178,7 +179,8 @@ CREATE TABLE `registration` (
 --
 
 INSERT INTO `registration` (`id`, `lesson_id`, `person_id`, `payment`) VALUES
-(1, 3, 1, '4');
+(1, 3, 1, '4'),
+(2, 3, 1, '4');
 
 -- --------------------------------------------------------
 
@@ -273,7 +275,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT voor een tabel `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`
@@ -291,7 +293,7 @@ ALTER TABLE `person`
 -- AUTO_INCREMENT voor een tabel `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `training`
