@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for participant in participants.registrations %}
+        {{ participant.person.firstname }}
+        {{ participant.person.lastname }}
+        {{ participant.payment }}
+    {% endfor %}
+
+{% endblock %}

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 21 jun 2023 om 11:37
--- Serverversie: 10.4.28-MariaDB
--- PHP-versie: 8.2.4
+-- Gegenereerd op: 21 jun 2023 om 13:49
+-- Serverversie: 10.4.24-MariaDB
+-- PHP-versie: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,11 +32,11 @@ USE `schoolopdracht`;
 DROP TABLE IF EXISTS `contact`;
 CREATE TABLE `contact` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `subject` varchar(255) NOT NULL
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -57,7 +57,7 @@ INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `phone`, `subject
 
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
+  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -91,9 +91,9 @@ CREATE TABLE `lesson` (
   `instructor_id` int(11) DEFAULT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `location` varchar(255) NOT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `max_persons` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_signed_up` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -102,9 +102,10 @@ CREATE TABLE `lesson` (
 --
 
 INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `location`, `max_persons`, `title`, `is_signed_up`) VALUES
-(3, 3, 5, '20:23:00', '2023-06-30', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0),
+(3, 3, 5, '08:30:00', '2023-09-19', 'TrainingFactory Gym, 123 Main Street', 12, 'MMA Conditioning and Fitness', 0),
 (4, NULL, NULL, '13:00:00', '2023-06-29', 'TrainingFactory Gym, 123 Main Street', 10, 'Bag Training', 0),
-(5, NULL, NULL, '18:30:00', '2023-07-04', 'TrainingFactory Gym, 123 Main Street', 25, 'MMA Fitness', 0);
+(5, NULL, NULL, '18:30:00', '2023-07-04', 'TrainingFactory Gym, 123 Main Street', 25, 'MMA Fitness', 0),
+(7, NULL, 5, '14:50:00', '2009-06-21', 'The Hague', 20, 'Boxing', 0);
 
 -- --------------------------------------------------------
 
@@ -115,9 +116,9 @@ INSERT INTO `lesson` (`id`, `training_id`, `instructor_id`, `time`, `date`, `loc
 DROP TABLE IF EXISTS `messenger_messages`;
 CREATE TABLE `messenger_messages` (
   `id` bigint(20) NOT NULL,
-  `body` longtext NOT NULL,
-  `headers` longtext NOT NULL,
-  `queue_name` varchar(190) NOT NULL,
+  `body` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `headers` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
@@ -132,18 +133,18 @@ CREATE TABLE `messenger_messages` (
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
   `id` int(11) NOT NULL,
-  `email` varchar(180) NOT NULL,
-  `roles` longtext NOT NULL COMMENT '(DC2Type:json)',
-  `password` varchar(255) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hiring_date` date DEFAULT NULL,
   `salary` decimal(10,2) DEFAULT NULL,
   `social_sec_number` int(11) DEFAULT NULL,
-  `street` varchar(255) DEFAULT NULL,
-  `place` varchar(255) DEFAULT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `preprovision` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `dateofbirth` varchar(255) NOT NULL
+  `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `place` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preprovision` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateofbirth` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -151,11 +152,11 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`id`, `email`, `roles`, `password`, `hiring_date`, `salary`, `social_sec_number`, `street`, `place`, `firstname`, `preprovision`, `lastname`, `dateofbirth`) VALUES
-(1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$qJ1ftp27ipgvDyT4RYwbpOooAW6ydwut6bkxkZ0jihoy1Odlnhnie', NULL, NULL, NULL, NULL, NULL, 'Klaas', 'test', 'Jeet', '15-08-2002'),
-(2, 'admin@rocmondriaan.nl', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$ZGm2KAauKtxNjkfrcROqqu2GcP05SMhmZzG2ocVZk3idisRoFa5Pi', '2021-06-03', 1600.00, 239870669, NULL, NULL, 'Tom', 'test', 'Holland', '23-09-1996'),
-(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', 1800.00, 98768907, 'Kwarklaan 36', 'Amsterdam', 'Dhiradj', 'Rapstar', 'Tangali', '30-12-2004'),
+(1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$u8e2s.0FefEYDN8RuO2FkO1hlToTriIip.TJqsgTfCkC.z6pUzdIW', NULL, NULL, NULL, NULL, NULL, 'Klaas', 'test', 'Jeet', '15-08-2002'),
+(2, 'admin@rocmondriaan.nl', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$ZGm2KAauKtxNjkfrcROqqu2GcP05SMhmZzG2ocVZk3idisRoFa5Pi', '2021-06-03', '1600.00', 239870669, NULL, NULL, 'Tom', 'test', 'Holland', '23-09-1996'),
+(5, 'dhiradj@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$NdJ70ZsMSWKtF8een2lRTOvh0RJwyT/2Pj6.GMNzwHi7boerjWlNm', '2023-03-06', '1800.00', 98768907, 'Kwarklaan 36', 'Amsterdam', 'Dhiradj', 'Rapstar', 'Tangali', '30-12-2004'),
 (6, 'niels@mail.com', '[\"ROLE_KLANT\"]', '$2y$13$ik7j.NgxF.FtfuU3En2FfegSTNWyxJmvlq/44/DPhkXr.boJS/9f6', NULL, NULL, NULL, 'Mixostraat 5', 'Den Haag', 'Niels', 'test', 'Opperdam', '02-05-1995'),
-(9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', 1900.00, 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023'),
+(9, 'rohan@mail.com', '[\"ROLE_INSTRUCTOR\"]', '$2y$13$kdRcQXS/.ad3XUnKAy1ILuzqk7blquRwDm1zQvlKkMpbRRgAsASQe', '2023-06-04', '1900.00', 378659087, NULL, NULL, 'Rohan', 'test', 'Tangali', '01-06-2023'),
 (11, 'kishan@gmail.com', '[\"ROLE_KLANT\"]', '$2y$13$yqHXizVijjIVJQYhjwV4u.0A24KRh4.5/1Cb/DzZu4qBTaF/ZzTYS', NULL, NULL, NULL, 'Gerardeek 5', 'Rotterdam', 'Kishan', 'Docent', 'Tangali', '05-02-2010');
 
 -- --------------------------------------------------------
@@ -169,8 +170,15 @@ CREATE TABLE `registration` (
   `id` int(11) NOT NULL,
   `lesson_id` int(11) DEFAULT NULL,
   `person_id` int(11) DEFAULT NULL,
-  `payment` varchar(255) NOT NULL
+  `payment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `registration`
+--
+
+INSERT INTO `registration` (`id`, `lesson_id`, `person_id`, `payment`) VALUES
+(1, 3, 1, '4');
 
 -- --------------------------------------------------------
 
@@ -181,11 +189,11 @@ CREATE TABLE `registration` (
 DROP TABLE IF EXISTS `training`;
 CREATE TABLE `training` (
   `id` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `duration` varchar(255) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `extra_costs` decimal(5,2) DEFAULT NULL,
-  `image` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -265,7 +273,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT voor een tabel `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`
@@ -283,7 +291,7 @@ ALTER TABLE `person`
 -- AUTO_INCREMENT voor een tabel `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `training`

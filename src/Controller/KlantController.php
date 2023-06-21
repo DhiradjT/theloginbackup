@@ -6,6 +6,7 @@ use App\Entity\Lesson;
 use App\Form\ProfileType;
 use App\Entity\Registration;
 use App\Entity\Training;
+use App\Form\RegisterLessonType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\LessonRepository;
 use App\Repository\TrainingRepository;
@@ -73,21 +74,47 @@ class KlantController extends AbstractController
         ]);
     }
 
-    #[Route('/signup/{id}', name: 'signup')]
-    public function lessonSignUp(int $id, EntityManagerInterface $entityManager): Response
+//    #[Route('/signup/{id}', name: 'signup')]
+//    public function lessonSignUp(int $id, EntityManagerInterface $entityManager): Response
+//    {
+//        // Get the lesson by its ID
+//        $lesson = $entityManager->getRepository(Lesson::class)->find($id);
+//
+//        // Update the isSignedUp flag to true
+//        $lesson->setIsSignedUp(true);
+//
+//        // Save the changes to the database
+//        $entityManager->persist($lesson);
+//        $entityManager->flush();
+//
+//        // Redirect to a success page or perform any other desired action
+//        return $this->redirectToRoute('success_page');
+//    }
+
+    #[Route('/klant/lesson/add/{id}', name:'signup')]
+    public function addKlant(Request $request, EntityManagerInterface $entityManager) : Response
     {
-        // Get the lesson by its ID
-        $lesson = $entityManager->getRepository(Lesson::class)->find($id);
+        $add = new Registration();
+        $add->setPerson($this->getUser());
 
-        // Update the isSignedUp flag to true
-        $lesson->setIsSignedUp(true);
+        $form = $this->createForm(RegisterLessonType::class, $add);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $klant = $form->getData();
+            $entityManager->persist($klant);
+            $entityManager->flush();
 
-        // Save the changes to the database
-        $entityManager->persist($lesson);
-        $entityManager->flush();
+            return $this->redirectToRoute('app_klant');
+        }
+        return $this->renderForm('klant/success.html.twig' , [
+            'form' => $form
+        ]);
 
-        // Redirect to a success page or perform any other desired action
-        return $this->redirectToRoute('success_page');
+
+
+
+
     }
 
     #[Route('/succes', name: 'success_page')]

@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Submit</button>
-    {{ form_end(form) }}
+    <div class="container">
+        <div class="row">
+            <h1>Wijzig de les</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
 
 {% endblock %}

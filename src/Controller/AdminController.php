@@ -6,6 +6,7 @@ use App\Entity\Lesson;
 use App\Form\AddLessonType;
 use App\Form\ProfileType;
 use App\Form\LessonType;
+use App\Repository\PersonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -101,6 +102,7 @@ class AdminController extends AbstractController
     public function addLesson(Request $request): Response
     {
         $lesson = new Lesson();
+        $lesson->setInstructor($this->getUser());
 
         // Create the form and handle the form submission
         $form = $this->createForm(AddLessonType::class, $lesson);
@@ -157,17 +159,20 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/join', name:'join_page')]
-    public function joinPage()
+//    #[Route('/join', name:'join_page')]
+//    public function joinPage()
+//    {
+//        return $this->render('admin/join.html.twig');
+//    }
+
+    #[Route('/admin/participants/{id}', name: 'klant_participants')]
+    public function participants( ManagerRegistry $doctrine, PersonRepository $personRepository, int $id) : Response
     {
-        return $this->render('admin/join.html.twig');
+        $participants = $doctrine->getRepository(Lesson::class)->find($id);
+
+        return $this->render('admin/participants.html.twig',
+            ['participants' => $participants]);
     }
-
-        // Handle the case where the user is not authenticated or does not have the instructor role
-        // You can redirect to an error page or show an error message
-
-        // ...
-
 
 
 
